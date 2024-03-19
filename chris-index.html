@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React ⚛️</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function Header(props) {
+        return (
+          <header>
+            <h1>{props.name}'s Monkey Sniffing Hovel</h1>
+          </header>
+        );
+      }
+      function Main(props) {
+        return (
+        <section>
+          <p>The {props.adjective} monkey butts for your sniffing pleasure!</p>
+          <img 
+          height={200}
+          src="../images/monkey.jpg"
+          alt="A brown monkey farts in a tree"
+          />
+          <ul>
+            {props.monkeys.map((monkey) => (
+              <li key={monkey.id}>{monkey.title}</li>
+            ))}
+          </ul>
+        </section>
+        );
+      }
+      function Footer(props) {
+        return (
+          <footer>
+            <p>Copyright {props.year}</p>
+          </footer>
+        )
+      }
+      const monkeys = [
+        "Baboon",
+        "Capuchin",
+        "Macaque",
+        "Mandrill",
+        "Marmoset",
+        "Proboscis Monkey",
+        "Rhesus",
+        "Spider Monkey",
+        "Tamarin"        
+      ];
+      const monkeyObjects = monkeys.map((monkey, i) => ({
+        id: i,
+        title: monkey
+      }));
+
+      function App() {
+        return (
+          <React.Fragment>
+          <Header name="Harvey Barflocks" />
+          <Main adjective="smelliest" monkeys={monkeyObjects}/>
+          <Footer year={new Date().getFullYear()} />
+        </React.Fragment>
+        );
+      }
+      ReactDOM.render(
+        <App />,
+      document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
